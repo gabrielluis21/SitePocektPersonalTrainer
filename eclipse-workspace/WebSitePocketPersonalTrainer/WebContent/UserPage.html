@@ -1,10 +1,113 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+ <head>
+  <meta charset="ISO-8859-1">
+ 
+  <!-- AngularJS -->
+  <script src="angularJS/angular.min.js"></script>
+  <script src="angularJS/webSitePersonalTrainer.js"></script>
+  <script src="angularJS/controllers/personal-trainer-controler.js"></script>
+  <script src="angularJS/controllers/academia-controller.js"></script>
+  <script src="angularJS/controllers/cliente-controller.js"></script>
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="bootstrap-4.1.3/css/bootstrap.min.css">
+	
+  <!-- Latest compiled JavaScript -->
+  <script src="bootstrap-4.1.3/js/bootstrap.min.js"></script>
+  <script src="bootstrap-4.1.3/js/bootstrap.bundle.js"></script>	
+  <script src="bootstrap-4.1.3/js/bootstrap.bundle.min.js"></script>
+  <script src="bootstrap-4.1.3/js/bootstrap.js"></script>
+  <script src="javaScript/jquery-3.3.1.min.js"></script>
+ 
+  <title ng-show="{{auctionlogged.user}}">Meu Perfil - {{auctionlogged.user}}</title>
+ 
+ </head>
+ <body class="container-fluid">
+ 
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <a class="navbar-brand" href="index.html">
+        <img alt="" src="images/icone_prototipo.png" width="30" height="30" class="d-inline-block align-top">
+        Pocket Personal Trainer
+     </a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+     </button>
+     <ul class="nav navbar-nav navbar-right">
+      	<li ng-show="{{auctionLogged.user}}">
+      		Bem vindo {{auctionLogged.user}}<a href="logout">Sair</a> 
+      	</li>
+     </ul>
+   </nav>
+   
+   <section class="container">
+    <div class="jumbotron bg-dark text-white">
+  	 <h1 class="display-4">Bem vindo!</h1>
+  	 <p class="lead">Esta é a sua pagina para gerenciar todas as suas informações</p>
+  	 <hr class="my-4">
+  	 <p>Aqui você pode gerenciar seus personais trainers e seus clientes</p>
+	</div>
+   </section>
+   
+   <section id="controlarPersonalT" ng-controller="controllerPersonal" class="container bg-light">
+   	 <div class="row">
+       <p>Adicionar um novo Personal trainer</p>
+  	   <a id="addPersonal" href="#formPersonal" class="btn btn-primary mb-2" > <i class="fas fa-plus-circle"></i> </a>
+	 </div>
+   	 
+   	 <div id="formPersonal">
+   	  <form data-ng-submit="cadastrarPersonal()" class="form-horizontal" role="form">
+  	 	<div class="form-row">
+  	   	 <div class="h2">Dados do PersonalTrainer</div>
+  		</div>
+  		<div class="form-row">
+  		 <div class="form-group col-sm-8">
+  	   	  <label for="txtNomePersonal">Nome Personal: </label>
+  	   	  <input type="text" name="txtNomePersonal" class="form-control">
+ 		 </div>
+   		 <div class="form-group col-sm-5">
+      	  <label for="txtcrefPersonal">C.R.E.F. do Personal: </label>
+   	 	  <input type="text" name="txtcrefPersonal" class="form-control">
+   	     </div>
+  		</div>
+   		<div class="form-group col-sm-6">
+     	 <input type="Submit" id="btnE" class="btn btn-primary btn-lg " value="Enviar">
+	  	 <input type="Reset" id="btnR" class="btn btn-second btn-lg" value="Limpar Tudo">
+ 		</div>
+      </form>
+   	 </div>
+   	  
+     
+     <table class="table table-hover table-bordered">
+  	  <thead class="thead-dark">
+    	<tr>
+      	 <th scope="col">Nome</th>
+      	 <th scope="col">C.R.E.F</th>
+      	 <th scope="col">Ações</th>
+    	</tr>
+  	  </thead>
+  	  <tbody>
+    	<tr ng-repeat="personal in personais">
+    	 <td>{{personal.nome}}</td>
+      	 <td>{{personal.cref}}</td>
+      	 <td><a href="" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a><a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+    	</tr>
+  	  </tbody>
+    </table>
+    
+   </section>
+   
+   <section>
+   </section>
+   
+   <script>
+    $("#formPersonal").hide("fast");
+	$("#addPersonal").click( function(){
+		$("#formPersonal").show("fast");
+	});
+   </script>
+   
+ </body>
 </html>

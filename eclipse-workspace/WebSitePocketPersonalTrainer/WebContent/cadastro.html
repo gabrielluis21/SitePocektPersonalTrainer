@@ -6,7 +6,8 @@
 	
 	<!-- AngularJS -->
 	<script src="angularJS/angular.min.js"></script>
-	<script type="text/javascript" src="angularJS/webSitePersonalTrainer"></script>
+	<script type="text/javascript" src="angularJS/controllers/personal-trainer-controler.js"></script>
+	<script type="text/javascript" src="angularJS/controllers/academia-controller.js"></script>
 	
 	<title>Cadastro</title>
     
@@ -33,11 +34,11 @@
      </button>
   </nav>
  
-  <section class="container">
+  <section class="container" ng-controller="controllerPersonal">
   	<form data-ng-submit="cadastrarPersonal()" class="form-horizontal" role="form">
   	 <fieldset class="shadow p-3 mb-5 bg-white rounded">
   	   <div class="form-row">
-  	    <legend>Dados do PersonalTrainer</legend>
+  	    <div class="h2">Dados do PersonalTrainer</div>
   	   </div>
   	   <div class="form-group col-sm-12">
   	   	 <label for="txtNomePersonal">Nome Personal: </label>
@@ -59,7 +60,7 @@
    <form data-ng-submit="cadastrarAcademia()" class="form-horizontal" role="form">
 	 <fieldset class="shadow p-3 mb-5 bg-white rounded">		
 	  <div class="form-row">
-	   <legend>Cadastrar Academia</legend>
+	   <div class="h2">Cadastrar Academia</div>
 	  </div>
 	   
 		
