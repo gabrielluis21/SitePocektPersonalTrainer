@@ -58,7 +58,7 @@
 	 </div>
    	 
    	 <div id="formPersonal">
-   	  <form data-ng-submit="cadastrarPersonal()" class="form-horizontal" role="form">
+   	  <form  class="form-horizontal" role="form">
   	 	<div class="form-row">
   	   	 <div class="h2">Dados do PersonalTrainer</div>
   		</div>
@@ -73,7 +73,7 @@
    	     </div>
   		</div>
    		<div class="form-group col-sm-6">
-     	 <input type="Submit" id="btnE" class="btn btn-primary btn-lg " value="Enviar">
+     	 <input type="Submit" id="btnE" class="btn btn-primary btn-lg " value="Enviar" ng-click="cadastrarPersonal()">
 	  	 <input type="Reset" id="btnR" class="btn btn-second btn-lg" value="Limpar Tudo">
  		</div>
       </form>
@@ -92,20 +92,109 @@
     	<tr ng-repeat="personal in personais">
     	 <td>{{personal.nome}}</td>
       	 <td>{{personal.cref}}</td>
-      	 <td><a href="" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a><a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+      	 <td><button ng-click="atualizarPersonal" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button><button ng-click="deletaPersonal" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
     	</tr>
   	  </tbody>
     </table>
     
    </section>
    
-   <section>
+   <section id="controleDeCliente" ng-controller="ClienteControler" class="container bg-dark text-white">
+    <div class="row">
+       <p>Adicionar um novo Cliente</p>
+  	   <a id="addCliente" href="#formCliente" class="btn btn-primary mb-2" > <i class="fas fa-plus-circle"></i> </a>
+	 </div>
+   	 
+   	 <div id="formCliente">
+   	  <form class="form-horizontal" role="form">
+  	 	<div class="form-row">
+  	   	 <div class="h2">Dados do Cliente</div>
+  		</div>
+  		<div class="form-row">
+  		 <div class="form-group col-sm-8">
+  	   	  <label for="txtNomeCli">Nome: </label>
+  	   	  <input type="text" name="txtNomePersonal" class="form-control">
+ 		 </div>
+   		 <div class="form-group col-sm-7">
+      	  <label for="txtcrefPersonal">Endereço: </label>
+   	 	  <input type="text" name="txtEndereco" class="form-control">
+   	     </div>
+   	     <div class="form-group col-sm-8">
+  	   	  <label for="txtNomeCli">E-mail: </label>
+  	   	  <input type="email" name="txtEmailCli" class="form-control">
+ 		 </div>
+   		 <div class="form-group col-sm-7">
+      	  <label for="txtcrefPersonal">Senha: </label>
+      	  <div class="input-group-append">
+      	   <input type="password" name="txtSenhaCli" class="form-control">
+   	 	   <button class="btn btn-secund btn-md" ng-click="">Gerar senha automática</button>
+      	  </div>
+   	     </div>
+   	     <div class="form-group col-sm-8">
+  	   	  <label for="txtNomeCli">Peso: </label>
+  	   	  <input type="number" name="txtPesoCli" class="form-control">
+ 		 </div>
+   		 <div class="form-group col-sm-7">
+      	  <label for="txtcrefPersonal">Altura: </label>
+   	 	  <input type="number" name="txtAlturaCli" class="form-control">
+   	     </div>
+  		</div>
+  		<div class="form-group col-sm-8">
+  	   	  <label for="txtNomeCli">Data de nascimmento: </label>
+  	   	  <input type="date" name="txtDtNascCli" class="form-control ">
+ 		 </div>
+   		 <div class="form-group col-sm-7">
+      	  <label for="txtcrefPersonal">Data de vencimento da mensalidade: </label>
+   	 	  <input type="date" name="txtDtVencimentoMens" class="form-control">
+   	     </div>
+   	     <div class="form-group col-sm-7">
+      	  <label for="txtcrefPersonal">Valor da mensalidade: </label>
+   	 	  <input type="number" name="txtValorMens" class="form-control">
+   	     </div>
+   		<div class="form-group col-sm-6">
+     	 <input type="Submit" id="btnE" class="btn btn-primary btn-lg " value="Enviar" ng-click="cadastrarCliente()">
+	  	 <input type="Reset" id="btnR" class="btn btn-second btn-lg" value="Limpar Tudo">
+ 		</div>
+      </form>
+   	 </div>
+   	  
+     
+     <table class="table table-hover table-bordered">
+  	  <thead class="thead-dark">
+    	<tr>
+      	 <th scope="col">Nome</th>
+      	 <th scope="col">Endereço</th>
+      	 <th scope="col">E-mail</th>
+      	 <th scope="col">Telefone</th>
+      	 <th scope="col">Data de nescimento</th>
+      	 <th scope="col">Status</th>
+      	 <th scope="col">Data de vencimento da mensalidade</th>
+      	 <th scope="col">Ações</th>
+    	</tr>
+  	  </thead>
+  	  <tbody>
+    	<tr ng-repeat="cli in clientes">
+    	 <td>{{cli.nome}}</td>
+      	 <td>{{cli.endereco}}</td>
+      	 <td>{{cli.email}}</td>
+      	 <td>{{cli.tel}}</td>
+      	 <td>{{cli.dtNasc}}</td>
+      	 <td>{{cli.status}}</td>
+      	 <td>{{cli.DtVencimentoMes}}</td>
+      	 <td><a href="" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a><a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+    	</tr>
+  	  </tbody>
+    </table>
    </section>
    
    <script>
     $("#formPersonal").hide("fast");
 	$("#addPersonal").click( function(){
 		$("#formPersonal").show("fast");
+	});
+	$("#formCliente").hide("fast");
+	$("#addCliente").click( function(){
+		$("#formCliente").show("fast");
 	});
    </script>
    
