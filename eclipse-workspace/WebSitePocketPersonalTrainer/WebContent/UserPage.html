@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="pocketPersonalTrainer">
  <head>
   <meta charset="ISO-8859-1">
  
   <!-- AngularJS -->
   <script src="angularJS/angular.min.js"></script>
-  <script src="angularJS/webSitePersonalTrainer.js"></script>
-  <script src="angularJS/controllers/personal-trainer-controler.js"></script>
-  <script src="angularJS/controllers/academia-controller.js"></script>
-  <script src="angularJS/controllers/cliente-controller.js"></script>
+  <script src="angularJS/webSitePocketPersonalTrainer.js"></script>
   
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" 
@@ -25,7 +22,7 @@
   <title ng-show="{{auctionlogged.user}}">Meu Perfil - {{auctionlogged.user}}</title>
  
  </head>
- <body class="container-fluid">
+ <body class="container-fluid bg-dark" ng-controller="userPageController">
  
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
      <a class="navbar-brand" href="index.html">
@@ -51,29 +48,29 @@
 	</div>
    </section>
    
-   <section id="controlarPersonalT" ng-controller="controllerPersonal" class="container bg-light">
-   	 <div class="row">
-       <p>Adicionar um novo Personal trainer</p>
-  	   <a id="addPersonal" href="#formPersonal" class="btn btn-primary mb-2" > <i class="fas fa-plus-circle"></i> </a>
-	 </div>
+   <section id="controlarPersonalT" class="bg-light">
+    <div class="justify-content-center">
+  	   	 <p > Adicionar um novo Personal trainer </p>
+  	   	 <a id="addPersonal" href="#formPersonal" class="btn btn-primary mb-2" > <i class="fas fa-plus-circle"></i> </a>
+  	</div>
    	 
    	 <div id="formPersonal">
-   	  <form  class="form-horizontal" role="form">
+   	  <form  class="form-horizontal" role="form" novalidate name="frmPersonal">
   	 	<div class="form-row">
   	   	 <div class="h2">Dados do PersonalTrainer</div>
   		</div>
   		<div class="form-row">
   		 <div class="form-group col-sm-8">
   	   	  <label for="txtNomePersonal">Nome Personal: </label>
-  	   	  <input type="text" name="txtNomePersonal" class="form-control">
+  	   	  <input type="text" name="txtNomePersonal" class="form-control" ng-model="personal.nome" required>
  		 </div>
-   		 <div class="form-group col-sm-5">
+   		 <div class="form-group col-sm-4">
       	  <label for="txtcrefPersonal">C.R.E.F. do Personal: </label>
-   	 	  <input type="text" name="txtcrefPersonal" class="form-control">
+   	 	  <input type="text" name="txtcrefPersonal" class="form-control" ng-model="personal.cref" required>
    	     </div>
   		</div>
    		<div class="form-group col-sm-6">
-     	 <input type="Submit" id="btnE" class="btn btn-primary btn-lg " value="Enviar" ng-click="cadastrarPersonal()">
+     	 <input type="Submit" id="btnE" class="btn btn-primary btn-lg " value="Enviar" ng-click="salvaPersonal()">
 	  	 <input type="Reset" id="btnR" class="btn btn-second btn-lg" value="Limpar Tudo">
  		</div>
       </form>
@@ -99,63 +96,69 @@
     
    </section>
    
-   <section id="controleDeCliente" ng-controller="ClienteControler" class="container bg-dark text-white">
-    <div class="row">
-       <p>Adicionar um novo Cliente</p>
-  	   <a id="addCliente" href="#formCliente" class="btn btn-primary mb-2" > <i class="fas fa-plus-circle"></i> </a>
-	 </div>
+   <section id="controleDeCliente" class="text-white">
+    
+    <div class="justify-content-center">
+  	  <p> Adicionar um novo Cliente   </>
+  	  <a id="addCliente" href="#formCliente" class="btn btn-primary mb-2" > <i class="fas fa-plus-circle"></i> </a>
+   	 </div>
    	 
    	 <div id="formCliente">
-   	  <form class="form-horizontal" role="form">
+   	  <fieldset>
+   	   <form class="form-horizontal" role="form" novalidate name="frmCliente">
   	 	<div class="form-row">
   	   	 <div class="h2">Dados do Cliente</div>
   		</div>
   		<div class="form-row">
-  		 <div class="form-group col-sm-8">
-  	   	  <label for="txtNomeCli">Nome: </label>
-  	   	  <input type="text" name="txtNomePersonal" class="form-control">
+  		 <div class="form-group col-sm-5">
+  	   	  <label for="txtNomeCli">Nome:</label>
+  	   	  <input type="text" name="txtNomeCli" class="form-control" ng-model="cliente.nome" required>
  		 </div>
-   		 <div class="form-group col-sm-7">
-      	  <label for="txtcrefPersonal">Endereço: </label>
-   	 	  <input type="text" name="txtEndereco" class="form-control">
+   		 <div class="form-group col-sm-5">
+      	  <label for="txtEnderecoCli">Endereço:</label>
+   	 	  <input type="text" name="txtEnderecoCli" class="form-control" ng-model="cliente.endereco" required>
    	     </div>
-   	     <div class="form-group col-sm-8">
-  	   	  <label for="txtNomeCli">E-mail: </label>
-  	   	  <input type="email" name="txtEmailCli" class="form-control">
+   	     <div class="form-group col-sm-4">
+  	   	  <label for="txtEmailCli">E-mail:</label>
+  	   	  <input type="email" name="txtEmailCli" class="form-control" ng-model="cliente.email" required>
  		 </div>
-   		 <div class="form-group col-sm-7">
-      	  <label for="txtcrefPersonal">Senha: </label>
+   		 <div class="form-group col-sm-4">
+      	  <label for="txtSenhaCli">Senha:</label>
       	  <div class="input-group-append">
-      	   <input type="password" name="txtSenhaCli" class="form-control">
-   	 	   <button class="btn btn-secund btn-md" ng-click="">Gerar senha automática</button>
+      	   <input id="txtSenha" type="password" name="txtSenhaCli" class="form-control read-only" maxlength="8" ng-model="cliente.senha">
+   	 	   <input id="geraSenha" type="button" value="Gerar senha automática" ng-click="generatePw()">
       	  </div>
    	     </div>
-   	     <div class="form-group col-sm-8">
-  	   	  <label for="txtNomeCli">Peso: </label>
-  	   	  <input type="number" name="txtPesoCli" class="form-control">
+   	     <div class="form-group col-sm-1">
+  	   	  <label for="txtPesoCli">Peso:</label>
+  	   	  <input type="number" value="00.00" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" 
+  	   	  class="currency form-control" name="txtPesoCli" ng-model="cliente.peso" required>
  		 </div>
-   		 <div class="form-group col-sm-7">
-      	  <label for="txtcrefPersonal">Altura: </label>
-   	 	  <input type="number" name="txtAlturaCli" class="form-control">
+   		 <div class="form-group col-sm-1">
+      	  <label for="txtAlturaCli">Altura:</label>
+   	 	  <input type="number" value="00.00" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100"
+   	 	   class="currency form-control" name="txtAlturaCli" ng-model="cliente.altura" required>
    	     </div>
-  		</div>
-  		<div class="form-group col-sm-8">
-  	   	  <label for="txtNomeCli">Data de nascimmento: </label>
-  	   	  <input type="date" name="txtDtNascCli" class="form-control ">
+   		 <div class="form-group col-sm-2">
+  	   	  <label for="txtDtNascCli">Data de nascimmento:</label>
+  	   	  <input type="date" name="txtDtNascCli" class="form-control" ng-model="cliente.dtNasc" required>
  		 </div>
-   		 <div class="form-group col-sm-7">
-      	  <label for="txtcrefPersonal">Data de vencimento da mensalidade: </label>
-   	 	  <input type="date" name="txtDtVencimentoMens" class="form-control">
+   		 <div class="form-group col-sm-2">
+      	  <label for="txtDtVencimentoMes">Data de vencimento da mensalidade:</label>
+   	 	  <input type="date" name="txtDtVencimentoMens" class="form-control" ng-model="cliente.dtVencimentoMens" required>
    	     </div>
-   	     <div class="form-group col-sm-7">
-      	  <label for="txtcrefPersonal">Valor da mensalidade: </label>
-   	 	  <input type="number" name="txtValorMens" class="form-control">
+   	     <div class="form-group col-sm-1">
+      	  <label for="txtValorMens">Valor da mensalidade:</label>
+   	 	  <input type="number" value="00.00" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100"
+   	 	   class="currency form-control" name="txtValorMens" ng-model="cliente.valorMens" required>
    	     </div>
-   		<div class="form-group col-sm-6">
-     	 <input type="Submit" id="btnE" class="btn btn-primary btn-lg " value="Enviar" ng-click="cadastrarCliente()">
-	  	 <input type="Reset" id="btnR" class="btn btn-second btn-lg" value="Limpar Tudo">
+   	    </div>
+   		<div class="form-group col-sm-5">
+     	 <input type="Submit" id="btnSave" class="btn btn-primary btn-lg " value="Enviar" ng-click="cadastrarCliente()">
+	  	 <input type="Reset" id="btnResetCli" class="btn btn-second btn-lg" value="Limpar Tudo" ng-click="cancelarAlteracaoCliente()">
  		</div>
-      </form>
+       </form>
+      </fieldset>
    	 </div>
    	  
      
@@ -195,7 +198,7 @@
 	$("#formCliente").hide("fast");
 	$("#addCliente").click( function(){
 		$("#formCliente").show("fast");
-	});
+	});	
    </script>
    
  </body>

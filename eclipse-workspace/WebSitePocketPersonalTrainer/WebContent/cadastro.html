@@ -6,8 +6,7 @@
 	
 	<!-- AngularJS -->
 	<script src="angularJS/angular.min.js"></script>
-	<script type="text/javascript" src="angularJS/controllers/personal-trainer-controler.js"></script>
-	<script type="text/javascript" src="angularJS/controllers/academia-controller.js"></script>
+	<script type="text/javascript" src="angularJS/controllers/webSitePocketPersonalTrainer.js"></script>
 	
 	<title>Cadastro</title>
     
@@ -22,7 +21,7 @@
 	<script src="javaScript/jquery-3.3.1.min.js"></script>
 	
  </head>
- <body class="container-fluid bg-dark">
+ <body class="container-fluid bg-dark" ng-controller="cadastroController">
  
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
      <a class="navbar-brand" href="index.html">
@@ -34,19 +33,20 @@
      </button>
   </nav>
  
-  <section class="container" ng-controller="controllerPersonal">
-  	<form data-ng-submit="cadastrarPersonal()" class="form-horizontal" role="form">
+  <section class="container">
+  	<form data-ng-submit="cadastrarPersonal()" class="form-horizontal" role="form" novalidate name="frmPersonal">
   	 <fieldset class="shadow p-3 mb-5 bg-white rounded">
+  	 
   	   <div class="form-row">
   	    <div class="h2">Dados do PersonalTrainer</div>
   	   </div>
   	   <div class="form-group col-sm-12">
   	   	 <label for="txtNomePersonal">Nome Personal: </label>
-  	   	 <input type="text" name="txtNomePersonal" class="form-control">
+  	   	 <input type="text" name="txtNomePersonal" class="form-control" ng-model="personal.nome" required>
   	   </div>
   	   <div class="form-group col-sm-8">
   	     <label for="txtcrefPersonal">C.R.E.F. do Personal: </label>
-  	   	 <input type="text" name="txtcrefPersonal" class="form-control">
+  	   	 <input type="text" name="txtcrefPersonal" class="form-control" ng-model="personal.cref" required>
   	   </div>
   	   <div class="form-group col-sm-6">
 		  <input type="Submit" id="btnE" class="btn btn-primary btn-lg " value="Enviar">
@@ -57,7 +57,7 @@
   </section>
 	
   <section id="cadAcademia" class="container">
-   <form data-ng-submit="cadastrarAcademia()" class="form-horizontal" role="form">
+   <form data-ng-submit="cadastrarAcademia()" class="form-horizontal" role="form" novalidate name="frmAcademia">
 	 <fieldset class="shadow p-3 mb-5 bg-white rounded">		
 	  <div class="form-row">
 	   <div class="h2">Cadastrar Academia</div>
@@ -66,20 +66,20 @@
 		
 		<div class="form-group col-sm-12">
 		  <label for="txtNF">Nome Academia</label>
-		  <input type="text" id="txtNome" class="form-control"  placeholder="">
+		  <input type="text" id="txtNome" class="form-control"  ng-model="Academia.nome" required>
 		</div>					  
 		<div class="form-group col-sm-12">		
 		  <label for="txtE">Endereço</label>
-		  <input type="text" id="txtEndereco" class="form-control" placeholder="">
+		  <input type="text" id="txtEndereco" class="form-control" ng-model="Academia.endereco" required>
 		</div>		
 		<div class="form-row">
 		 <div class="form-group col-sm-5"> 					 
 		  <label for="txtC">Cidade </label>
-		  <input type="text" id="txtCidade" class="form-control" placeholder="">
+		  <input type="text" id="txtCidade" class="form-control" ng-model="academia.cidade" required>
 		 </div>
 		 <div class="form-group col-sm-5">		
 		  <label for="txtET">UF </label>
-		  <select name="estados" id="txtUF" class="form-control">
+		  <select name="estados" id="txtUF" class="form-control" ng-model="academia.uf" required>
 		    <option value="estado">Selecione o Estado</option> 
 			<option value="AC">Acre</option> 
 			<option value="AL">Alagoas</option> 
@@ -114,22 +114,21 @@
 		<div class="form-row">
 		  <div class="form-group col-sm-4">		
 		    <label for="txtT">Telefone</label>
-		    <input type="text" id="txtT" class="form-control" placeholder="">
+		    <input type="text" id="txtT" class="form-control" placeholder="" ng-model="Academia.telefone" required>
 		  </div>
 	 	  <div class="form-group col-sm-5">
 	 	    <label for="txtEmail">E-mail:</label>
-	  	    <input type="email" id="txtEmail" class="form-control" placeholder="">
+	  	    <input type="email" id="txtEmail" class="form-control" ng-model="Academia.email" required>
 	 	  </div>
 		</div>
-		
 		<div class="form-row">
 		 <div class="form-group col-sm-5">
 	 	  <label for="txtPwd">Senha:</label>
-	  	  <input type="password" id="txtPwd" class="form-control" placeholder="">
+	  	  <input type="password" id="txtPwd" class="form-control" ng-model="Academia.senha" required>
 	 	 </div>
 	 	 <div class="form-group col-sm-5">
 	 	  <label for="txtConfPwd">Confirmar Senha:</label>
-	 	  <input type="password" id="txtConfPwd" class="form-control" placeholder="">
+	 	  <input type="password" id="txtConfPwd" class="form-control">
 	 	 </div>
 		</div>	
 	  				
